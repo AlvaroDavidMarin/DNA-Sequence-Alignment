@@ -1,6 +1,6 @@
 package Sequencing;
 import javax.swing.*;
-// This is just to test
+
 public class GUI {
 	 static JTextField Sequence1 = new JTextField();
 	 static JTextField Sequence2 = new JTextField();
