@@ -1,7 +1,7 @@
 package Sequencing;
 import javax.swing.*;
 
-public class GUI {
+public class GUI extends DPM{
 	 static JTextField Sequence1 = new JTextField();
 	 static JTextField Sequence2 = new JTextField();
 
@@ -67,7 +67,7 @@ public class GUI {
 			 JOptionPane.showMessageDialog(null, "Only Positive intergers Allowed","Failure",JOptionPane.ERROR_MESSAGE );
 			 Info();
 		 }else if(option == JOptionPane.OK_OPTION) {
-			 OptionMenu men = new OptionMenu(Sequence1, Sequence2);
+			 OptionMenu men = new OptionMenu(Sequence1, Sequence2, MatchScore,MisMatchScore,GapPenality);
 			 men.Options();
 		 }
 	 }

@@ -16,19 +16,24 @@ import javax.swing.JTextField;
 public class OptionMenu extends GUI implements ActionListener {
 	JTextField First = new JTextField();
 	JTextField Second = new JTextField();
+	JTextField Match = new JTextField();
+	JTextField Mis = new JTextField();
+	JTextField Gap = new JTextField();
 	
-	public OptionMenu(JTextField First, JTextField Second) {		
+	public OptionMenu(JTextField First, JTextField Second, JTextField Match, JTextField Mis, JTextField Gap ) {		
 		this.First = First;
 		this.Second = Second;
+		this.Match = Match;
+		this.Mis = Mis;
+		this.Gap = Gap;
 	}
+
 	
 	JFrame frame = new JFrame();
 	JButton button1 = new JButton();
 	JButton button2 = new JButton();
 	JButton button3 = new JButton();
 	JButton button4 = new JButton();
-
-
 	
 	  void Options() {
 			 frame = new JFrame("Options");
@@ -81,14 +86,19 @@ public class OptionMenu extends GUI implements ActionListener {
 			 frame.setTitle("Options");
 			 frame.pack();
 			 frame.setLocationRelativeTo(null);
-			 frame.setVisible(true);
-			 
+			 frame.setVisible(true); 
 		
 		 }
+		
+	  
 		 
 		 public void actionPerformed(ActionEvent e) {
 			 if(e.getSource()== button2) {
-				 System.out.println("initialzed matrix clicked");
+				 int match = Integer.parseInt(Match.getText());
+				 int mis = Integer.parseInt(Mis.getText());
+				 int gap = Integer.parseInt(Gap.getText());
+				 int[][] Mat = DPM.Intialization_Step(First.getText(),Second.getText(),match,mis,gap);
+				 PrintInitMatrix(Mat,First.getText(),Second.getText());
 			 }
 			 if(e.getSource() == button3) {
 				 System.out.println("Finaled Matrix");
