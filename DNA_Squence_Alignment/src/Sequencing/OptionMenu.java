@@ -89,8 +89,6 @@ public class OptionMenu extends GUI implements ActionListener {
 			 frame.setVisible(true); 
 		
 		 }
-		
-	  
 		 
 		 public void actionPerformed(ActionEvent e) {
 			 if(e.getSource()== button2) {
@@ -98,7 +96,7 @@ public class OptionMenu extends GUI implements ActionListener {
 				 int mis = Integer.parseInt(Mis.getText());
 				 int gap = Integer.parseInt(Gap.getText());
 				 int[][] Mat = DPM.Intialization_Step(First.getText(),Second.getText(),match,mis,gap);
-				 PrintInitMatrix(Mat,First.getText(),Second.getText());
+				 PrintMatrix(Mat,First.getText(),Second.getText());
 			 }
 			 if(e.getSource() == button3) {
 				 System.out.println("Finaled Matrix");
