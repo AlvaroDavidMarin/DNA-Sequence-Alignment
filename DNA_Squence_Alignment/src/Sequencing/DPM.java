@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 public class DPM extends Cell{
 
 	static JTextArea MATRIX = new JTextArea();
+	static JFrame frame = new JFrame("Inital");
 	static int M;
 	static int N;
 
@@ -39,7 +40,7 @@ public class DPM extends Cell{
 	public static int[][] Get_Max(int i, int j, String Seq1, String Seq2, int[][] Matrix, int Match, int MisMatch,
 			int GapPenality) {
 
-		int[][] Temp = new int [i][j];
+		int[][] Temp = new int [i+1][j+1];
 
 		int Sim;
 		int Gap = GapPenality;
@@ -47,7 +48,7 @@ public class DPM extends Cell{
 		if (Seq1.charAt(i - 1) == Seq2.charAt(j - 1))
 			Sim = Match;
 		else
-			Sim = MisMatch;
+		Sim = MisMatch;
 		// Get values for cells around new cell
 		int M1, M2, M3;
 		// Diagonal
@@ -60,7 +61,6 @@ public class DPM extends Cell{
 
 		if (M1 >= M2 && M1 >= M3) {
 			Temp [i][j]= M1;
-
 		} else {
 			if (M2 >= M1 && M2 >= M3) {
 				Temp[i][j]= M2;
@@ -73,13 +73,64 @@ public class DPM extends Cell{
 
 		return Temp;
 	}
+	public static int[][] FinalMatrix(int[][] Matrix, String Seq1, String Seq2, int Match, int MisMatch, int Gap) {
+		int M = Seq1.length() + 1;
+		int N = Seq2.length() + 1;
+		// Fill Matrix with each cell has a value result from method Get_Max
+		for (int i = 1; i < M; i++) {
+			for (int j = 1; j < N; j++) {
+				Matrix[i][j] = Get_Max(i, j, Seq1, Seq2, Matrix, Match, MisMatch, Gap)[i][j];
+			}
+		}
+
+		return Matrix;
+	}
+	
+	public static DNA Traceback(String dna1, String dna2) {
+		// Adds character depending on match and score
+		if (dna1.length() == 0 && dna2.length() == 0) {
+			return new DNA();
+
+		} else if (dna1.length() == 0) {
+			DNA result = Traceback(dna1, dna2.substring(1));
+			result.addMatch('_', dna2.charAt(0));
+			return result;
+
+		} else if (dna2.length() == 0) {
+			DNA result = Traceback(dna1.substring(1), dna2);
+			result.addMatch(dna1.charAt(0), '_');
+			return result;
+
+		} else {
+			DNA first = Traceback(dna1.substring(1), dna2);
+			first.addMatch(dna1.charAt(0), '_');
+
+			DNA second = Traceback(dna1, dna2.substring(1));
+			second.addMatch('_', dna2.charAt(0));
+
+			DNA both = Traceback(dna1.substring(1), dna2.substring(1));
+			both.addMatch(dna1.charAt(0), dna2.charAt(0));
+
+			if (first.score() >= second.score() && first.score() >= both.score()) {
+				return first;
+
+			} else if (second.score() >= first.score() && second.score() >= both.score()) {
+				return second;
+
+			} else {
+
+				return both;
+			}
+		}
+	}
 
 	
 	public static void PrintMatrix(int[][] Matrix, String Seq1, String Seq2) {
-		JFrame frame = new JFrame("Inital");
+		frame = new JFrame("Inital");
 		JPanel Matpanel = new JPanel(new GridLayout(0,1));
 		MATRIX = new JTextArea(M,N);
 		String test = new String();
+		
 		
 		for (int[]row : Matrix) {
 			test += Arrays.toString(row) + "\n";
@@ -88,12 +139,13 @@ public class DPM extends Cell{
 			Matpanel.add(MATRIX);
 			Matpanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 	
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame.add(Matpanel,BorderLayout.CENTER);
-			frame.setTitle("Intial");
+			frame.setTitle("Matrix");
 			frame.pack();
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true); 
+			
 	}
 	
 }

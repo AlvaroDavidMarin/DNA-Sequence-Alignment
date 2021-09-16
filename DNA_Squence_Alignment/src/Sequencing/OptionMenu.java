@@ -96,16 +96,28 @@ public class OptionMenu extends GUI implements ActionListener {
 				 int mis = Integer.parseInt(Mis.getText());
 				 int gap = Integer.parseInt(Gap.getText());
 				 int[][] Mat = DPM.Intialization_Step(First.getText(),Second.getText(),match,mis,gap);
+				 DPM.frame.dispose();
 				 PrintMatrix(Mat,First.getText(),Second.getText());
+				 
 			 }
 			 if(e.getSource() == button3) {
-				 System.out.println("Finaled Matrix");
+				 int match = Integer.parseInt(Match.getText());
+				 int mis = Integer.parseInt(Mis.getText());
+				 int gap = Integer.parseInt(Gap.getText());
+				 int[][] Mat = DPM.Intialization_Step(First.getText(),Second.getText(),match,mis,gap);
+				 int[][] Fine = DPM.FinalMatrix(Mat, First.getText(), Second.getText(), match, match, gap);
+				 DPM.frame.dispose();
+				 PrintMatrix(Fine,First.getText(),Second.getText());
 			 }
 			 if(e.getSource() == button4) {
-				 System.out.println("Alignment");
+				 DNA Align =Traceback(First.getText(),Second.getText());
+				 Align.frame1.dispose();
+				 Align.Alignment();
+			
+				// System.out.println(Align.toString());
 			 }
 			 if(e.getSource() == button1) {
-				 System.out.println("New");
+				 
 				 frame.dispose();
 				 First.setText(null);
 				 Second.setText(null);

@@ -1,12 +1,22 @@
 package Sequencing;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class DNA{
-	protected String dna;
+	protected String dna1;
+	protected String dna2;
+	JFrame frame1 = new JFrame("Inital");
 	
 	
 	public DNA() {
-		dna="";
+		dna1="";
+		dna2="";
 		
 	}
 	
@@ -23,8 +33,40 @@ public class DNA{
 		}
 		return true;
 	}
+	public int score() {
+		int score = 0;
+		for (int i = 0; i < dna1.length(); i++) {
+			if (dna1.charAt(i) == dna2.charAt(i)) {
+				score += 2;
+			} else {
+				score -= 1;
+			}
+		}
+		return score;
+	}
 
-	
+	public void addMatch(char c1, char c2) {
+		dna1 = c1 + dna1;
+		dna2 = c2 + dna2;
+		
+	}
+
+	public void Alignment() {
+		frame1 = new JFrame("Inital");
+		JPanel Apanel = new JPanel(new GridLayout(0,1));
+		JTextArea ALIGN = new JTextArea();
+		//return dna1 + "\n" + dna2;
+		ALIGN.setText(dna1 + "\n" + dna2);
+		Apanel.add(ALIGN);
+		Apanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+		frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame1.add(Apanel,BorderLayout.CENTER);
+		frame1.setTitle("Matrix");
+		frame1.pack();
+		frame1.setLocationRelativeTo(null);
+		frame1.setVisible(true); 
+	}
 		 
 
 }
