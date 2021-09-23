@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class DPM extends Cell{
+public class DPM {
 
 	static JTextArea MATRIX = new JTextArea();
 	static JFrame frame = new JFrame("Inital");

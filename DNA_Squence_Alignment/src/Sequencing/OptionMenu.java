@@ -1,5 +1,4 @@
 package Sequencing;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -12,14 +11,36 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+/**
+ * 
+ * The OptionMenu class is used in order for the user to select what options they want the program to do after verifying
+ *  all valid inputs from the GUI class. The option menu gives the user the options to display the initialized matrix, finalized matrix, the alignment 
+ *  between the sequences and to input new DNA sequences. The alignment is calculated using the Needleman-Wunsch Algorithm.
+ *  The OptionMenu class extends the GUI class in order to used the scoring system and the inputed DNA sequences as well as use the methods in the DPM class
+ * 	Implements Action Listener in order to respond to the different button activations 
+ * 
+ * @author Alvaro Marin
+ * @version 4.20.0
+ * 
+ */
 public class OptionMenu extends GUI implements ActionListener {
+	
+	// Initialize all the variables used for calculations and displaying
 	JTextField First = new JTextField();
 	JTextField Second = new JTextField();
 	JTextField Match = new JTextField();
 	JTextField Mis = new JTextField();
 	JTextField Gap = new JTextField();
 	
+	/**
+	 * Constructor for the OptionMemu Class
+	 * 
+	 * @param First : Takes in the first JTextField from the GUI class, which would be the first DNA Sequence 
+	 * @param Second : Takes in the Second JTextField from the GUI class, which would be the Second DNA Sequence 
+	 * @param Match : Takes in a JTextField from the GUI class, which would the Match Score
+	 * @param Mis : Takes in a JTextField from the GUI class, which would the Mis Match Score
+	 * @param Gap : Takes in a JTextField from the GUI class, which would the Gap Penalty 
+	 */
 	public OptionMenu(JTextField First, JTextField Second, JTextField Match, JTextField Mis, JTextField Gap ) {		
 		this.First = First;
 		this.Second = Second;
@@ -28,65 +49,71 @@ public class OptionMenu extends GUI implements ActionListener {
 		this.Gap = Gap;
 	}
 
-	
+	// Initialize a frame and 4 buttons(each for the different options)
 	JFrame frame = new JFrame();
 	JButton button1 = new JButton();
 	JButton button2 = new JButton();
 	JButton button3 = new JButton();
 	JButton button4 = new JButton();
 	
+	// Options() is a method to display the options window 
 	  void Options() {
-			 frame = new JFrame("Options");
-			 button1 = new JButton("New");
-			 button2 = new JButton("Initialized Matrix");
-			 button3 = new JButton("Finalize Matrix");
-			 button4 = new JButton("Alignment");
-			 
-			 JLabel label1 = new JLabel("Sequence 1:");
-			 JLabel label2 = new JLabel("Sequence 2:");
-			 
-			 JPanel Labelpanel = new JPanel(new GridLayout(0,1));
-			 JPanel Textpanel = new JPanel(new GridLayout(0,1));
-			 JPanel buttonPanel = new JPanel(new GridLayout(0,1));
-			 
-			 button1.addActionListener(this);
-			 button2.addActionListener(this);
-			 button3.addActionListener(this);
-			 button4.addActionListener(this);
+		  
+		  // Create a frame called Options and 4 buttons for the different options
+		  frame = new JFrame("Options");
+		  button1 = new JButton("New");
+		  button2 = new JButton("Initialized Matrix");
+		  button3 = new JButton("Finalize Matrix");
+		  button4 = new JButton("Alignment");
+			
+		  // Create Labels in order to identify which sequence is which
+		  JLabel label1 = new JLabel("Sequence 1:");
+		  JLabel label2 = new JLabel("Sequence 2:");
+			
+		  // Create the different panels to be added to the frame later 
+		  JPanel Labelpanel = new JPanel(new GridLayout(0,1));
+		  JPanel Textpanel = new JPanel(new GridLayout(0,1));
+		  JPanel buttonPanel = new JPanel(new GridLayout(0,1));
+			
+		  // 
+		  button1.addActionListener(this);
+		  button2.addActionListener(this);
+		  button3.addActionListener(this);
+		  button4.addActionListener(this);
 			 	 
-			 First.setEditable(false);
-			 First.setPreferredSize(new Dimension(125,25));
-			 Second.setEditable(false);
-			 Second.setPreferredSize(new Dimension(125,25));
+		  First.setEditable(false);
+		  First.setPreferredSize(new Dimension(125,25));
+		  Second.setEditable(false);
+		  Second.setPreferredSize(new Dimension(125,25));
 			 
-			 label1.setLabelFor(First);
-			 label2.setLabelFor(Second);
+		  label1.setLabelFor(First);
+		  label2.setLabelFor(Second);
 			 
-			 Labelpanel.add(label1);
-			 Labelpanel.add(label2);
+		  Labelpanel.add(label1);
+		  Labelpanel.add(label2);
 			 
-			 First.setText(First.getText().toUpperCase());
-			 Second.setText(Second.getText().toUpperCase());
-			 Textpanel.add(First);
-			 Textpanel.add(Second); 
+		  First.setText(First.getText().toUpperCase());
+		  Second.setText(Second.getText().toUpperCase());
+		  Textpanel.add(First);
+		  Textpanel.add(Second); 
 			 
-			 buttonPanel.add(button2);
-			 buttonPanel.add(button3);
-			 buttonPanel.add(button4);
-			 buttonPanel.add(button1);
+		  buttonPanel.add(button2);
+		  buttonPanel.add(button3);
+		  buttonPanel.add(button4);
+		  buttonPanel.add(button1);
 	
-			 Labelpanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-			 Textpanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-			 buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		  Labelpanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		  Textpanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		  buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 			 
-			 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			 frame.add(Labelpanel,BorderLayout.CENTER);
-			 frame.add(Textpanel, BorderLayout.LINE_END);
-			 frame.add(buttonPanel, BorderLayout.AFTER_LAST_LINE);
-			 frame.setTitle("Options");
-			 frame.pack();
-			 frame.setLocationRelativeTo(null);
-			 frame.setVisible(true); 
+		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  frame.add(Labelpanel,BorderLayout.CENTER);
+		  frame.add(Textpanel, BorderLayout.LINE_END);
+		  frame.add(buttonPanel, BorderLayout.AFTER_LAST_LINE);
+		  frame.setTitle("Options");
+		  frame.pack();
+		  frame.setLocationRelativeTo(null);
+		  frame.setVisible(true); 
 		
 		 }
 		 
