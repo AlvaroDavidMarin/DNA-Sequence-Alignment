@@ -20,7 +20,6 @@ public class DNA{
 		
 	}
 	
-	
 	public boolean ValidCheck(JTextField check ) {
 		String str = check.getText().toString().toUpperCase();
 		for(int i = 0; i < str.length(); i++) {
