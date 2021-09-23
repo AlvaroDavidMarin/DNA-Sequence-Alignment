@@ -70,42 +70,54 @@ public class OptionMenu extends GUI implements ActionListener {
 		  JLabel label1 = new JLabel("Sequence 1:");
 		  JLabel label2 = new JLabel("Sequence 2:");
 			
-		  // Create the different panels to be added to the frame later 
+		  // Create the different panels to be added to the frame later
+		  // label panel is used to display the labels for the Sequences 
 		  JPanel Labelpanel = new JPanel(new GridLayout(0,1));
+		  
+		  // Text panel is used to display the DNA sequence used 
 		  JPanel Textpanel = new JPanel(new GridLayout(0,1));
+		  // button panel is ued to display all the buttons for the different options 
 		  JPanel buttonPanel = new JPanel(new GridLayout(0,1));
 			
-		  // 
+		  // Add action listener to each button in order to perform different actions when the buttons are pressed
 		  button1.addActionListener(this);
 		  button2.addActionListener(this);
 		  button3.addActionListener(this);
 		  button4.addActionListener(this);
-			 	 
+		
+		  // Set the textfield that will display the two DNA Sequence to non-editable
+		  // A textfield allows for the full sequence to be displayed while being compressed
 		  First.setEditable(false);
 		  First.setPreferredSize(new Dimension(125,25));
 		  Second.setEditable(false);
 		  Second.setPreferredSize(new Dimension(125,25));
-			 
+			
+		  // Set the label for each DNA Sequence
 		  label1.setLabelFor(First);
 		  label2.setLabelFor(Second);
 			 
+		  // add the labels to the label panel 
 		  Labelpanel.add(label1);
 		  Labelpanel.add(label2);
-			 
+		
+		  // Set the text for the DNA Sequence y
 		  First.setText(First.getText().toUpperCase());
 		  Second.setText(Second.getText().toUpperCase());
 		  Textpanel.add(First);
 		  Textpanel.add(Second); 
-			 
+			
+		  // Add all buttons to the button panel
 		  buttonPanel.add(button2);
 		  buttonPanel.add(button3);
 		  buttonPanel.add(button4);
 		  buttonPanel.add(button1);
 	
+		  // Format all the panel sizes 
 		  Labelpanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		  Textpanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		  buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-			 
+			
+		  // Format the Frame and add all the panels to the frame 
 		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		  frame.add(Labelpanel,BorderLayout.CENTER);
 		  frame.add(Textpanel, BorderLayout.LINE_END);
@@ -117,6 +129,7 @@ public class OptionMenu extends GUI implements ActionListener {
 		
 		 }
 		 
+	  	 // Method to listen to which button is clicked
 		 public void actionPerformed(ActionEvent e) {
 			 if(e.getSource()== button2) {
 				 int match = Integer.parseInt(Match.getText());
@@ -141,7 +154,6 @@ public class OptionMenu extends GUI implements ActionListener {
 				 Align.frame1.dispose();
 				 Align.Alignment();
 			
-				// System.out.println(Align.toString());
 			 }
 			 if(e.getSource() == button1) {
 				 
@@ -150,8 +162,7 @@ public class OptionMenu extends GUI implements ActionListener {
 				 Second.setText(null);
 				 Start();
 			 }
-			//Options();
-			 
+
 		 }
 	
 
