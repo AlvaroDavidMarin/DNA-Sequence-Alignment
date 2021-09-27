@@ -131,6 +131,7 @@ public class OptionMenu extends GUI implements ActionListener {
 		 
 	  	 // Method to listen to which button is clicked
 		 public void actionPerformed(ActionEvent e) {
+			 // Check if button2(Initialization Matrix) is clicked
 			 if(e.getSource()== button2) {
 				 int match = Integer.parseInt(Match.getText());
 				 int mis = Integer.parseInt(Mis.getText());
@@ -140,6 +141,7 @@ public class OptionMenu extends GUI implements ActionListener {
 				 PrintMatrix(Mat,First.getText(),Second.getText());
 				 
 			 }
+			 // Check if button3(Finalized Matrix) is clicked 
 			 if(e.getSource() == button3) {
 				 int match = Integer.parseInt(Match.getText());
 				 int mis = Integer.parseInt(Mis.getText());
@@ -149,12 +151,14 @@ public class OptionMenu extends GUI implements ActionListener {
 				 DPM.frame.dispose();
 				 PrintMatrix(Fine,First.getText(),Second.getText());
 			 }
+			 //Check if button4(Find Alignment) is clicked
 			 if(e.getSource() == button4) {
 				 DNA Align =Traceback(First.getText(),Second.getText());
 				 Align.frame1.dispose();
 				 Align.Alignment();
 			
 			 }
+			 // Check if button1(New pair of Sequence) is clicked
 			 if(e.getSource() == button1) {
 				 
 				 frame.dispose();

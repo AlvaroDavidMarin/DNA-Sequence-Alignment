@@ -9,6 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * 
+ * The GUI Class is used at the beginning of the program and any time a new DNA sequence alignment is required.
+ * The class is used to store the text input from the user and determines if it is valid and to send to option menu class
+ * The GUI class extends to the DPM class in order to do calculations later on 
+ * @author Alvaro Marin
+ * @version 4.20.0
+ * 
+ */
 public class DPM {
 
 	static JTextArea MATRIX = new JTextArea();
