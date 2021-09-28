@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 /**
  * 
- * The DNA Class is used to perform to 
+ * The DNA Class is used to perform different operations to the DNA Sequence and the Alignment
  * @author Alvaro Marin
  * @version 4.20.0
  * 

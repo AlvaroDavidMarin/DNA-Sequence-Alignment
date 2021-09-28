@@ -11,9 +11,7 @@ import javax.swing.JTextArea;
 
 /**
  * 
- * The GUI Class is used at the beginning of the program and any time a new DNA sequence alignment is required.
- * The class is used to store the text input from the user and determines if it is valid and to send to option menu class
- * The GUI class extends to the DPM class in order to do calculations later on 
+ * The DPM Class is used to create and do operation to the Matrixes for DNA Sequence Alignment
  * @author Alvaro Marin
  * @version 4.20.0
  * 
@@ -25,11 +23,12 @@ public class DPM {
 	static int M;
 	static int N;
 
-	
+	//Default Constructor for the DPM Class
 	public DPM() {
 		super();
 	}
 	
+	// Method to create initial Matrix between the two DNA Sequences 
 	public static int[][] Intialization_Step(String Seq1, String Seq2, int Match, int MisMatch, int Gap) {
 		 M = Seq1.length() + 1;
 		 N = Seq2.length() + 1;
@@ -46,6 +45,7 @@ public class DPM {
 		}
 		return Matrix;
 	}
+	//Method that calculates max score for each cell in the initial matrix
 	public static int[][] Get_Max(int i, int j, String Seq1, String Seq2, int[][] Matrix, int Match, int MisMatch,
 			int GapPenality) {
 
@@ -82,6 +82,7 @@ public class DPM {
 
 		return Temp;
 	}
+	//Method to create the finalized matrix between the two DNA Sequences 
 	public static int[][] FinalMatrix(int[][] Matrix, String Seq1, String Seq2, int Match, int MisMatch, int Gap) {
 		int M = Seq1.length() + 1;
 		int N = Seq2.length() + 1;
