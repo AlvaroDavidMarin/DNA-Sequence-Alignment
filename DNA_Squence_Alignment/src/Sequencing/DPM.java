@@ -65,16 +65,16 @@ public class DPM {
 	}
 	
 	/**
-	 * 
-	 * @param i
-	 * @param j
-	 * @param Seq1
-	 * @param Seq2
-	 * @param Matrix
-	 * @param Match
-	 * @param MisMatch
-	 * @param GapPenality
-	 * @return
+	 * This Method is used to get the max value for each slot of the matrix 
+	 * @param i : size of the matrix (columns)
+	 * @param j : size of the matrix (rows)
+	 * @param Seq1 : DNA Sequence 1 that will be used to compare 
+	 * @param Seq2 : DNA Sequence 2 that will be used to compare 
+	 * @param Matrix : The Initial matrix that be will manipulated 
+	 * @param Match  : The Match Score inputed by the user previously 
+	 * @param MisMatch : The MisMatch Score inputed by the user previously 
+	 * @param GapPenality : The Gap penalty inputed by the user previously 
+	 * @return : Returns the new matrix with updated values 
 	 */
 	public static int[][] Get_Max(int i, int j, String Seq1, String Seq2, int[][] Matrix, int Match, int MisMatch,
 			int GapPenality) {
@@ -112,8 +112,9 @@ public class DPM {
 
 		return Temp;
 	}
-	//Method to create the finalized matrix between the two DNA Sequences 
+
 	/**
+	 * Method to create the finalized matrix between the two DNA Sequences 
 	 * 
 	 * @param Matrix
 	 * @param Seq1
@@ -135,11 +136,12 @@ public class DPM {
 		frame = new JFrame("Final");
 		return Matrix;
 	}
+	
 	/**
-	 * 
-	 * @param dna1
-	 * @param dna2
-	 * @return
+	 * This method is used to create the trace-back and to create the final alignment 
+	 * @param dna1 : The first DNA Sequence that will be examined
+	 * @param dna2 : The Second DNA Sequence that will examined 
+	 * @return : The DNA Sequence Alignment between the two Sequences based on the inputed scoring system 
 	 */
 	public static DNA Traceback(String dna1, String dna2) {
 		// Adds character depending on match and score
@@ -180,10 +182,10 @@ public class DPM {
 	}
 
 	/**
-	 * 
-	 * @param Matrix
-	 * @param Seq1
-	 * @param Seq2
+	 * This Method is used to display a inputed matrix onto a new window
+	 * @param Matrix : Matrix that will be displayed 
+	 * @param Seq1 : Sequence that will be displayed on the top
+	 * @param Seq2 : Sequence that will be displayed on the left
 	 */
 	public static void PrintMatrix(int[][] Matrix, String Seq1, String Seq2) {
 		
