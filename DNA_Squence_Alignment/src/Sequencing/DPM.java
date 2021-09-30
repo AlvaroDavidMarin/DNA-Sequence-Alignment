@@ -17,9 +17,13 @@ import javax.swing.JTextArea;
  * 
  */
 public class DPM {
-
+	
+	/**
+	 * Initialize the frame and jtextarea that will display a matrix 
+	 * Initialize the variables for the size of the matrix
+	 */
 	static JTextArea MATRIX = new JTextArea();
-	static JFrame frame = new JFrame("Inital");
+	static JFrame frame = new JFrame("");
 	static int M;
 	static int N;
 
@@ -28,24 +32,50 @@ public class DPM {
 		super();
 	}
 	
-	// Method to create initial Matrix between the two DNA Sequences 
+	/**
+	 * Method to create a initial Matrix between the two DNA Sequences, with parameters taken from the OptionMenu Class 
+	 * @param Seq1 : represents the First DNA Sequence 
+	 * @param Seq2 : represents  the  second DNA Sequence 
+	 * @param Match : represents the Match score that the user wishes to use 
+	 * @param MisMatch : represents the mismatch score that the user wishes to use
+	 * @param Gap : represents the gap penalty that the user wishes to use 
+	 * @return : returns a int matrix containing the initialization 
+	 */
 	public static int[][] Intialization_Step(String Seq1, String Seq2, int Match, int MisMatch, int Gap) {
+		
+		 // Assign the size of the matrix to the variables
 		 M = Seq1.length() + 1;
 		 N = Seq2.length() + 1;
-		
-
+		 
+		// Initialize a matrix with the correct size 
 		int[][] Matrix = new int[M][N];
+		
 		// Initialize the first Row With Gap Penalty Equal To i*Gap
 		for (int i = 1; i < M; i++) {
 			Matrix[i][0] = i*Gap;		
 		}
+		
 		// Initialize the first Column With Gap Penalty Equal To i*Gap
 		for (int i = 1; i < N; i++) {
 			Matrix[0][i] =  i * Gap;	
 		}
+		// set frame to be labeled as initial 
+		frame = new JFrame("Initial");
 		return Matrix;
 	}
-	//Method that calculates max score for each cell in the initial matrix
+	
+	/**
+	 * 
+	 * @param i
+	 * @param j
+	 * @param Seq1
+	 * @param Seq2
+	 * @param Matrix
+	 * @param Match
+	 * @param MisMatch
+	 * @param GapPenality
+	 * @return
+	 */
 	public static int[][] Get_Max(int i, int j, String Seq1, String Seq2, int[][] Matrix, int Match, int MisMatch,
 			int GapPenality) {
 
@@ -83,6 +113,16 @@ public class DPM {
 		return Temp;
 	}
 	//Method to create the finalized matrix between the two DNA Sequences 
+	/**
+	 * 
+	 * @param Matrix
+	 * @param Seq1
+	 * @param Seq2
+	 * @param Match
+	 * @param MisMatch
+	 * @param Gap
+	 * @return
+	 */
 	public static int[][] FinalMatrix(int[][] Matrix, String Seq1, String Seq2, int Match, int MisMatch, int Gap) {
 		int M = Seq1.length() + 1;
 		int N = Seq2.length() + 1;
@@ -92,10 +132,15 @@ public class DPM {
 				Matrix[i][j] = Get_Max(i, j, Seq1, Seq2, Matrix, Match, MisMatch, Gap)[i][j];
 			}
 		}
-
+		frame = new JFrame("Final");
 		return Matrix;
 	}
-	
+	/**
+	 * 
+	 * @param dna1
+	 * @param dna2
+	 * @return
+	 */
 	public static DNA Traceback(String dna1, String dna2) {
 		// Adds character depending on match and score
 		if (dna1.length() == 0 && dna2.length() == 0) {
@@ -134,9 +179,14 @@ public class DPM {
 		}
 	}
 
-	
+	/**
+	 * 
+	 * @param Matrix
+	 * @param Seq1
+	 * @param Seq2
+	 */
 	public static void PrintMatrix(int[][] Matrix, String Seq1, String Seq2) {
-		frame = new JFrame("Inital");
+		
 		JPanel Matpanel = new JPanel(new GridLayout(0,1));
 		MATRIX = new JTextArea(M,N);
 		String test = new String();
